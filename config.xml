@@ -14,7 +14,7 @@
     <!-- make external links open in browser, not take over the webview -->
     <access origin="*" subdomains="true" browserOnly="true" />
 
-    <preference name="phonegap-version" value="2.3.0" />
+    <preference name="phonegap-version" value="2.5.0" />
     <preference name="orientation" value="default" />
     <preference name="target-device" value="universal" />
     <preference name="fullscreen" value="false" />
