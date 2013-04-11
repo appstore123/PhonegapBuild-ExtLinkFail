@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns   = "http://www.w3.org/ns/widgets"
+    xmlns:gap   = "http://phonegap.com/ns/1.0"
+    id          = "com.countermarch.linkdemo"
+    versionCode = "@BUILD_NUMBER@"
+    version     = "@VERSION_MAJOR@.@VERSION_MINOR@.@BUILD_NUMBER@">
+
+    <name>Link Demo</name>
+    <description>
+        Shows how external links don't open the device browser
+    </description>
+    <author href="https://www.countermarch.com" email="helpdesk@countermarch.com">CounterMarch Systems</author>
+
+    <!-- make external links open in browser, not take over the webview -->
+    <access origin="*" subdomains="true" browserOnly="true" />
+
+    <preference name="phonegap-version" value="2.3.0" />
+    <preference name="orientation" value="default" />
+    <preference name="target-device" value="universal" />
+    <preference name="fullscreen" value="false" />
+    <preference name="webviewbounce" value="false" />
+    <preference name="prerendered-icon" value="false" />
+    <preference name="stay-in-webview" value="false" />
+    <preference name="ios-statusbarstyle" value="black-opaque" />
+
+    <feature name="http://api.phonegap.com/1.0/network"/>
+
+</widget>

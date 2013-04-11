@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="evercruit_mobile" default="package" basedir=".">
+
+	<property 	name="dir.dev" 				value="${basedir}" />
+	<property 	name="version.major" 		value="1" />
+	<property 	name="version.minor" 		value="0" />
+
+	<!-- :::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+	<!-- :::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+
+	<target name="package" depends="prepare-for-phone-build">
+		<tstamp>
+			<format property="build.tstamp" pattern="yyyy-MM-dd__HH-mm-ss" />
+		</tstamp>
+
+		<zip destfile="${dir.pkg.phonegap}phone-${build.tstamp}.zip">
+			<zipfileset dir="${dir.pkg.tmp}">
+				<exclude name="build.xml" />
+				<exclude name="build.properties" />
+				<exclude name="settings.xml" />
+				<exclude name=".project" />
+			</zipfileset>
+		</zip>
+
+		<delete includeemptydirs="true" verbose="false">
+			<fileset dir="${dir.pkg.tmp}" includes="**/*"/>
+		</delete>
+	</target>
+
+	<target name="prepare-for-phone-build">
+
+		<!-- increment build number -->
+		<propertyfile file="build.properties">
+			<entry key="version.build.number" type="int" operation="+" default="1" />
+		</propertyfile>
+		<property file="build.properties"/>
+
+		<!-- pull in local properties (this is where you set paths on your local machine) -->
+		<property file="local.properties" />
+
+		<echo message="BUILD NUMBER: ${version.build.number}"/>
+
+		<delete includeemptydirs="true" verbose="false">
+			<fileset dir="${dir.pkg.tmp}" includes="**/*"/>
+		</delete>
+		<filter token="BUILD_NUMBER"  value="${version.build.number}" />
+		<filter token="VERSION_MAJOR" value="${version.major}" />
+		<filter token="VERSION_MINOR" value="${version.minor}" />
+		<copy todir="${dir.pkg.tmp}" verbose="false" overwrite="true" filtering="true">
+			<fileset dir="${dir.dev}" includes="**/*">
+				<exclude name="build_temp" />
+				<exclude name="builds/**" />
+				<exclude name=".git" />
+				<exclude name=".gitignore" />
+				<exclude name="build.xml" />
+				<exclude name="cordova.js" />
+				<exclude name="build.properties" />
+				<exclude name="local.properties" />
+				<exclude name="assets/**/*.zip" />
+			</fileset>
+		</copy>
+
+	</target>
+
+</project>
